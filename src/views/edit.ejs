@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abarrotes TI | Editar</title>
+</head>
+<body>
+    <div data-role="page" data-theme="b">
+        <div data-role="header">
+            <h1>Abarrotes State | Editar</h1>
+        </div>
+        <div data-role="content">
+            <form action="/api/mangas/<%= manga.barcode %>" method="POST">
+                <input type="text" name="barcode" placeholder="Codigo de barras" value="<%= manga.barcode %>">
+                <input type="text" name="name" placeholder="Nombre" value="<%= manga.name %>">
+                <input type="number" name="vol" placeholder="Vol." value="<%= manga.vol %>">
+                <input type="text" name="author" placeholder="Autor" value="<%= manga.author %>">
+                <input type="text" name="editorial" placeholder="Editorial" value="<%= manga.editorial %>">
+                <input type="text" name="description" placeholder="Descripcion" value="<%= manga.description %>">
+                <input type="number" name="price" placeholder="Precio de compra" value="<%= manga.price %>">
+                <input type="number" name="cost" placeholder="Precio de venta" value="<%= manga.cost %>">
+                <input type="number" name="stock" placeholder="Existencias" value="<%= manga.stock %>">
+                <select name="status" id="flip-6" data-role="slider">
+                         <option value="0" <%= manga.status=0?"selected":"" %>>No</option>
+                         <option value="1" <%= manga.status=1?"selected":"" %>>Si</option>
+                </select>
+                <button type="submit" id="submit-6" class="ui-shadow ui-btn ui-corner-all ui-mini">Actulizar</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

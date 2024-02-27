@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <title>Abarrotes TI</title>
+</head>
+
+<body>
+    <div data-role="page" data-theme="b">
+        <div data-role="header">
+            <h1>Abarrotes State | Insertar</h1>
+        </div>
+        <div data-role="content">
+            <form action="" method="POST">
+                <input type="text" name="barcode" placeholder="Codigo de barras">
+                <input type="text" name="name" placeholder="Nombre">
+                <input type="number" name="vol" placeholder="Vol.">
+                <input type="text" name="author" placeholder="Autor">
+                <input type="text" name="editorial" placeholder="Editorial">
+                <input type="text" name="description" placeholder="Descripcion">
+                <input type="number" name="price" placeholder="Precio de compra">
+                <input type="number" name="cost" placeholder="Precio de venta">
+                <input type="number" name="stock" placeholder="Existencias">
+                <label for="flip-2">Estado</label>
+                <select name="status" id="flip-6" data-role="slider" data-mini="true">
+                         <option value="0">No</option>
+                         <option value="1">Si</option>
+                </select>
+                <button type="submit" id="submit-6" class="ui-shadow ui-btn ui-corner-all ui-mini">Enviar</button>
+            </form>
+
+            <form>
+                    <input data-type="search" id="searchForCollapsibleSetChildren">
+            </form>
+            <div data-role="collapsibleset" data-filter="true" data-children="> div, > div div ul li" data-inset="true" id="collapsiblesetForFilterChildren" data-input="#searchForCollapsibleSetChildren">
+                <% mangas.forEach((manga)=>{ %>
+                    <div data-role="collapsible" data-filter="<%= manga.description %>">
+                        <h1><%= manga.name %></h1>
+                        <ul data-role="listview" data-inset="false">
+                            <li>Codigo de barras: <%= manga.barcode %></li>
+                            <li>Nombre: <%= manga.name %></li>
+                            <li>Volumen: <%= manga.vol %></li>
+                            <li>Autor: <%= manga.author %></li>
+                            <li>Editorial: <%= manga.editorial %></li>
+                            <li>Descripcion: <%= manga.description %></li>
+                            <li>Precio de compra: <%= manga.price %></li>
+                            <li>Precio de venta: <%= manga.cost %></li>
+                            <li>Existencias: <%= manga.stock %></li>
+                            <li>Status: <% if (manga.status == 1) { %>
+                                <h1>Disponible</h1>
+                            <% } else { %>
+                                <h1>No Disponible</h1>
+                            <% } %></li>
+                            <li>
+                                <form>
+                                    <a href="/api/mangas/<%= manga.barcode %>" class="ui-btn">Editar</a>
+                                </form>   
+                            </li>
+                            <li>
+                                <form action="/api/mangas/<%= manga.barcode %>" method="DELETE">
+                                    <button type="submit">Eliminar</button>
+                                </form>
+                            </li> 
+                        </ul>
+                    </div>
+                <% }) %>
+            </div>
+
+
+        </div>
+        <div data-role="footer">
+            <!-- Contenido del footer -->
+        </div>
+    </div>
+</body>
+
+</html>
